@@ -125,10 +125,9 @@ def get_data(stocks):
             'income': income,
             'volume_purchased': volume_purchased,
             'volume_outstanding': volume_outstanding,
-            'relative_volume': relative_volume,
-            'date': date.today()
+            'relative_volume': relative_volume
         }
-        db.current_data.insert(stock_object)
+        db.current_data.insert_one(stock_object)
         retrieve_stock = db.current_data.find_one({'stock_ticker': each_stock.get('stock_ticker')})
         pp.pprint(retrieve_stock)
 
