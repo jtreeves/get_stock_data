@@ -5,7 +5,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
-import datetime, re, requests, io, time, random, string
+import re, requests, io, time, random, string
+from datetime import date
 from credentials import email, password
 from list_of_stocks import stock_list
 
@@ -114,6 +115,8 @@ def get_data(stocks):
 
         stock_object = {
             'company_name': company_name,
+            'stock_ticker': each_stock.get('stock_ticker'),
+            'exchange': each_stock.get('exchange'),
             'current_price': current_price,
             'percentage': percentage,
             'price_increase': price_increase,
@@ -124,7 +127,8 @@ def get_data(stocks):
             'income': income,
             'volume_purchased': volume_purchased,
             'volume_outstanding': volume_outstanding,
-            'relative_volume': relative_volume
+            'relative_volume': relative_volume,
+            'date': date.today()
         }
 
 get_data(stock_list)
