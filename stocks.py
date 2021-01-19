@@ -8,7 +8,8 @@ from bs4 import BeautifulSoup
 import re, requests, io, time, random, string
 from datetime import date
 from credentials import email, password
-from list_of_stocks import stock_list
+from stock_list import stock_list
+import pprint as pp
 
 client = MongoClient()
 db = client['stock_data']
@@ -130,8 +131,7 @@ def get_data(stocks):
             'relative_volume': relative_volume,
             'date': date.today()
         }
+        pp.pprint(stock_object)
+        db.current_data.insert(stock_object)
 
 get_data(stock_list)
-
-db.current_data.insert(stock_object)
-db.current_data.find_one()
