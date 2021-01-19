@@ -42,9 +42,6 @@ def log_in(email=email, password=password):
     else:
         print('Start app over')
 
-# Run the function
-log_in(email, password)
-
 def get_data(stocks):
     for i in range(len(stock_list)):
         each_stock = stock_list[i]
@@ -132,7 +129,10 @@ def get_data(stocks):
             'date': date.today()
         }
         db.current_data.insert(stock_object)
-        retrieve_stock = db.current_data.find_one({'stock_ticker': stock_ticker})
+        retrieve_stock = db.current_data.find_one({'stock_ticker': each_stock.get('stock_ticker')})
         pp.pprint(retrieve_stock)
 
+# Run the functions
+log_in(email, password)
+time.sleep(1)
 get_data(stock_list)
